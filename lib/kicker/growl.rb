@@ -17,6 +17,7 @@ end
 begin
   require 'osx/cocoa'
   require 'growlnotifier/growl_helpers'
+  require 'terminal-notifier'
 
   class Kicker
     module Growl #:nodoc:
@@ -49,6 +50,7 @@ begin
         end
         
         def change_occured(status)
+          TerminalNotifier.notify(status.command, :title => 'Kicker: Executing')
           growl(notifications[:change], 'Kicker: Executing', status.command)
         end
         
@@ -58,12 +60,14 @@ begin
         
         def succeeded(status)
           body = Kicker.silent? ? '' : status.output
+          TerminalNotifier.notify(body, :title => 'Kicker: Success')
           growl(notifications[:succeeded], "Kicker: Success", body, &DEFAULT_CALLBACK)
         end
         
         def failed(status)
           message = "Kicker: Failed (#{status.exit_code})"
           body = Kicker.silent? ? '' : status.output
+          TerminalNotifier.notify(body, :title => message)
           growl(notifications[:failed], message, body, &DEFAULT_CALLBACK)
         end
       end

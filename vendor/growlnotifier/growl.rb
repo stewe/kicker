@@ -98,8 +98,8 @@ module Growl
       context = {}
       context[:user_click_context] = options[:click_context] if options[:click_context]
       if block_given?
-        @callbacks[callback.object_id] = callback
-        context[:callback_object_id] = callback.object_id.to_s
+        #@callbacks[callback.object_id] = callback
+        #context[:callback_object_id] = callback.object_id.to_s
       end
       dict[:NotificationClickContext] = context if always_callback || !context.empty?
       

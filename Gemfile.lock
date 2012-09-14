@@ -29,6 +29,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12)
       json (~> 1.4)
+    terminal-notifier (~> 1.4.0)
     test-spec (0.10.0)
     test-unit (2.5.0)
 
@@ -41,5 +42,6 @@ DEPENDENCIES
   mocha
   rake
   rdoc
+  terminal-notifier
   test-spec
   test-unit
